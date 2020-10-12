@@ -11,6 +11,9 @@ import com.innowatts.util.Utils;
 public class AddEditDistanceService {
 
 	public Object concatenate(WeakHashMap<String, String> request) {
+		if(!request.containsKey(Constants.A)|| !request.containsKey(Constants.B)) {
+			 return Constants.INVALID_REQUEST;
+		}
 		String a = request.get(Constants.A);
 		String b = request.get(Constants.B);
 		if (Utils.isInteger(a) && Utils.isInteger(b)) {
@@ -30,7 +33,7 @@ public class AddEditDistanceService {
 	public Object editDistance(WeakHashMap<String, String> request) {
 		String a = request.get(Constants.A);
 		String b = request.get(Constants.B);
-		if(1 <= a.length()&& b.length() <= 450) {
+		if((a!=null&&b!=null)&&(1 <= a.length()&& b.length() <= 450)) {
 			return minStepsAtoB(a, a.length(), b, b.length());
 		}else {
 			return Constants.A_AND_B_ILLEGAL_INPUT;

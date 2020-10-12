@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Utils {
 	public static boolean isInteger(String x) {
-		if (null == x && x.trim().isEmpty())
+		if (null == x || x.trim().isEmpty())
 			return false;
 
 		try (Scanner scanner = new Scanner(x)) {
@@ -18,7 +18,7 @@ public class Utils {
 	}
 
 	public static boolean isDouble(String x) {
-		if (null == x && x.trim().isEmpty())
+		if (null == x || x.trim().isEmpty())
 			return false;
 		try (Scanner scanner = new Scanner(x)) {
 			if (scanner.hasNextDouble())
@@ -29,7 +29,7 @@ public class Utils {
 	}
 
 	public static boolean isString(String x) {
-		if (null == x && x.trim().isEmpty())
+		if (null == x || x.trim().isEmpty())
 			return false;
 		try (Scanner scanner = new Scanner(x)) {
 			if (scanner.hasNextLine())

@@ -8,6 +8,7 @@ public interface Constants {
 	String BLANK_SPACE=" ";
 	String DIGIT_REG="-?\\d+";
 	String A_AND_B_ILLEGAL_INPUT="Illegal Input.-> 1 <= length(A), length(B) <= 450";
+	Object INVALID_REQUEST = "invalid request..";
  
 
 }
