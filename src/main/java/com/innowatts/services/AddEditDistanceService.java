@@ -3,6 +3,7 @@ package com.innowatts.services;
 import java.util.WeakHashMap;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.innowatts.util.Constants;
 import com.innowatts.util.Utils;
@@ -11,11 +12,11 @@ import com.innowatts.util.Utils;
 public class AddEditDistanceService {
 
 	public Object concatenate(WeakHashMap<String, String> request) {
-		if(!request.containsKey(Constants.A)|| !request.containsKey(Constants.B)) {
-			 return Constants.INVALID_REQUEST;
-		}
 		String a = request.get(Constants.A);
 		String b = request.get(Constants.B);
+		if(StringUtils.isEmpty(a)|| StringUtils.isEmpty(b)) {
+			return Constants.INVALID_REQUEST;
+		}
 		if (Utils.isInteger(a) && Utils.isInteger(b)) {
 			return Integer.parseInt(a) + Integer.parseInt(b);
 		} else if (Utils.isDouble(a) && Utils.isDouble(b)) {
@@ -33,7 +34,7 @@ public class AddEditDistanceService {
 	public Object editDistance(WeakHashMap<String, String> request) {
 		String a = request.get(Constants.A);
 		String b = request.get(Constants.B);
-		if((a!=null&&b!=null)&&(1 <= a.length()&& b.length() <= 450)) {
+		if((!StringUtils.isEmpty(a)&& !StringUtils.isEmpty(b))&&(1 <= a.length()&& b.length() <= 450)) {
 			return minStepsAtoB(a, a.length(), b, b.length());
 		}else {
 			return Constants.A_AND_B_ILLEGAL_INPUT;
